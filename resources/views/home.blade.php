@@ -4,7 +4,7 @@
 @section('content')
     <header>
         <div class="container">
-            <h2 id="logo">TaskUp</h2>
+            <a href="{{ route('home') }}"><img src="{{ asset('images/logo.svg') }}" alt="notifications" class="logo"></a>
             <nav>
                 <a class="nav-link" href="#product">О продукте</a>
                 <a class="nav-link" href="#features">Возможности</a>
@@ -23,34 +23,34 @@
                 <h3 class="section-subtitle">ПОЧЕМУ МЫ?</h3>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <img>
+                        <img src="{{ asset('images/notifications.svg') }}" alt="notifications" class="feature-icon-img">
                         <div class="feature-first">
-                            <h4>Оповещения Telegram</h3>
-                            <p>Уведомления о дедлайнах в Telegram</p>
+                            <h4 class="feature-title">Оповещения Telegram</h4>
+                            <p class="feature-text">Уведомления о дедлайнах в Telegram</p>
                         </div>
                     </div>
 
                     <div class="feature-card">
-                        <img>
+                        <img src="{{ asset('images/group.svg') }}" alt="group" class="feature-icon-img">
                         <div class="feature-second">
-                            <h4>Для больших команд</h3>
-                            <p>Возможности для работы в больших командах</p>
+                            <h4 class="feature-title">Для больших команд</h4>
+                            <p class="feature-text">Возможности для работы в больших командах</p>
                         </div>
                     </div>
 
                     <div class="feature-card">
-                        <img>
+                        <img src="{{ asset('images/analytics.svg') }}" alt="analytics" class="feature-icon-img">
                         <div class="feature-third">
-                            <h4>Аналитика</h3>
-                            <p>Графики и метрики продуктивности</p>
+                            <h4 class="feature-title">Аналитика</h4>
+                            <p class="feature-text">Графики и метрики продуктивности</p>
                         </div>
                     </div>
 
                     <div class="feature-card">
-                        <img>
+                        <img src="{{ asset('images/steps.svg') }}" alt="steps" class="feature-icon-img">
                         <div class="feature-fourth">
-                            <h4>Легкая адаптация</h3>
-                            <p>Легкий порог вхождения и понятный интерфейс</p>
+                            <h4 class="feature-title">Легкая адаптация</h4    >
+                            <p class="feature-text">Легкий порог вхождения и понятный интерфейс</p>
                         </div>
                     </div>
                 </div>
