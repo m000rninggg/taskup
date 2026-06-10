@@ -1,0 +1,233 @@
+/* resources/css/login.css */
+
+/* Стили только для страницы логина — переопределяем body */
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(12,14,35,.88), rgba(12,14,35,.94)), url("/images/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    font-family: 'Manrope', sans-serif;
+}
+
+.auth-body::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    top: -250px;
+    left: -250px;
+    background: rgba(29,233,195,.08);
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+}
+
+.auth-body::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    bottom: -200px;
+    right: -150px;
+    background: rgba(29,233,195,.06);
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+}
+
+.auth-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.auth-info {
+    width: 420px;
+}
+
+.auth-info h2 {
+    font-size: 54px;
+    margin-bottom: 20px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.auth-info h2 span {
+    color: #1de9c3;
+}
+
+.auth-info p {
+    color: #b5b9d1;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.auth-features {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.auth-feature {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #d8dbeb;
+}
+
+.auth-feature-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: rgba(29,233,195,.1);
+    color: #1de9c3;
+}
+
+.auth-card {
+    width: 450px;
+    padding: 50px;
+    background: rgba(25,28,63,.92);
+    backdrop-filter: blur(15px);
+    border-radius: 28px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    border: 1px solid rgba(255,255,255,.05);
+}
+
+.auth-logo {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.auth-logo span {
+    color: #1de9c3;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #9ca0ba;
+    margin-bottom: 40px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #d5d8e8;
+    font-size: 14px;
+}
+
+.auth-input {
+    width: 100%;
+    background: #13163a;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 15px 18px;
+    color: white;
+    transition: .3s;
+}
+
+.auth-input::placeholder {
+    color: #73789a;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #1de9c3;
+    box-shadow: 0 0 15px rgba(29,233,195,.15);
+}
+
+.auth-btn {
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    background: #1de9c3;
+    color: #11132f;
+    font-weight: 600;
+    padding: 16px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(29,233,195,.25);
+}
+
+.auth-links {
+    margin-top: 25px;
+    text-align: center;
+    color: #a5a9c1;
+}
+
+.auth-links a {
+    color: #1de9c3;
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+.auth-divider {
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #7d82a3;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.08);
+}
+
+@media (max-width: 1000px) {
+    .auth-wrapper {
+        flex-direction: column;
+        padding: 30px;
+    }
+    .auth-info {
+        width: 100%;
+        max-width: 550px;
+        text-align: center;
+    }
+    .auth-card {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .auth-card {
+        padding: 35px 25px;
+    }
+    .auth-logo {
+        font-size: 38px;
+    }
+    .auth-info h2 {
+        font-size: 38px;
+    }
+}
