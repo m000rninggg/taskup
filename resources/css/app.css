@@ -12,8 +12,8 @@ html {
 
 body {
     font-family: 'Manrope', sans-serif;
-    background-color: rgb(43, 43, 78);
-    color: white;
+    background: linear-gradient(135deg, #23213A 0%, #1C1A26 100%);
+    color: #FFFFFF;
     line-height: 1.5;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -29,4 +29,38 @@ h1, h2, h3, h4, h5, h6 {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 60px 24px 40px;
+    border-top: 1px solid #312F3C;
+    color: #C2C2D4;
+}
+
+.footer-logo {
+    width: auto;
+    height: 40px;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 50px;
+}
+
+.footer-nav a {
+    color: #C2C2D4;
+    transition: .3s;
+}
+
+.footer-nav a:hover {
+    color: #20E6C3;
+}
+
+footer p {
+    color: #8C8CA3;
+    text-align: center;
 }

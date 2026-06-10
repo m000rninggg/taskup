@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'TaskUP')</title>
     @vite(['resources/css/app.css', 'resources/css/home.css'])
+    @stack('styles')
 </head>
-<body>    
+<body>
+    @include('layouts.header')
+
     <main>
-        @yield('content')
+        @isset($slot)
+            {{ $slot }}
+        @else
+            @yield('content')
+        @endisset
     </main>
 
-    <footer>
-        <h2>TaskUp</h2>
-        <nav>
-            <a href="/">О продукте</a>
-            <a href="/">Возможности</a>
-            <a href="/">Помощь</a>
-        </nav>
-        <p>© 2026 TaskUp | Дипломный проект К. А. Е.</p>
-    </footer>
+    @include('layouts.footer')
 </body>
 </html>

@@ -2,21 +2,7 @@
 @section('title', 'Главная - TaskUP')
 
 @section('content')
-    <header>
-        <div class="container">
-            <a href="{{ route('home') }}"><img src="{{ asset('images/logo.svg') }}" alt="notifications" class="logo"></a>
-            <nav>
-                <a class="nav-link" href="#product">О продукте</a>
-                <a class="nav-link" href="#features">Возможности</a>
-                <a class="nav-link" href="#help">Помощь</a>
-            </nav>
-            <div class="auth-buttons">
-                <a class="btn-login" href="{{ route('login') }}">Вход</a>
-                <a class="btn-register" href="{{ route('register') }}">Регистрация</a>
-            </div>
-        </div>
-    </header>
-
+<img src="{{ asset('images/background_img.png') }}" class="bg-img">
     <section class="hero-section">
         <div class="container">
             <div class="why-us">
@@ -58,16 +44,16 @@
             </div>
         
             <div class="hero-content">
-                <h1 class="hero-title">TaskUp</h1>
+                <img src="{{ asset('images/logo.svg') }}" alt="TaskUp" class="hero-logo">
                 <p>Это сайт для оптимизации командной работы. Он объединяет управление задачами и ведение документации
                     в одном пространстве, помогая команде сохранять фокус и контроль над процессом<p>
-                <button class="btn-primary">Приступить</button>
+                <a class="btn-primary" href="{{ auth()->check() ? route('dashboard') : route('register') }}">Приступить</a>
             </div>
         </div>
     </section>
 
     <div class="arrow-container">
-        <img src="#" alt="↓">
+        <img src="{{ asset('images/arrow.svg') }}" alt="↓" id="arrow">
     </div>
 
     <section class="features-section">
