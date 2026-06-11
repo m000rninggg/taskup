@@ -7,10 +7,26 @@
 
 @section('content')
 
+<img src="{{ asset('images/background_img.png') }}" class="bg-img dashboard-bg-img" alt="">
+
 <div class="container dashboard-container">
     <section class="welc">
         <h2>Добро пожаловать, {{ auth()->user()->name }}!</h2>
         <p>{{ now()->format('d/m/y') }}</p>
+    </section>
+
+    <section class="quick-actions">
+        <div class="action-grid">
+            <a class="action-block" href="{{ route('projects.create') }}">
+                <span class="action-icon">+</span>
+                <span>Создать проект</span>
+            </a>
+
+            <a class="action-block" href="{{ route('teams.create') }}">
+                <span class="action-icon">+</span>
+                <span>Создать команду</span>
+            </a>
+        </div>
     </section>
 
     <section class="stat">
@@ -61,10 +77,6 @@
                     <img src="{{ asset('images/delete.svg') }}" alt="icon">
                 </div>
             </div>
-        </div>
-        <div class="create-project">
-            <img alt="icon">
-            <p>Создать проект</p>
         </div>
     </section>
 </div>
