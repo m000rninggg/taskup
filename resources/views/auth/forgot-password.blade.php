@@ -5,7 +5,7 @@
 
     <!-- Session Status -->
     @if (session('status'))
-        <div style="color: #1de9c3; text-align: center; margin-bottom: 16px;">
+        <div style="color: #20E6C3; text-align: center; margin-bottom: 16px;">
             {{ session('status') }}
         </div>
     @endif
@@ -18,7 +18,7 @@
             <label for="email">Email</label>
             <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="your@email.com">
             @error('email')
-                <small style="color: #ff6b6b;">{{ $message }}</small>
+                <small style="color: #C2C2D4;">{{ $message }}</small>
             @enderror
         </div>
 
@@ -31,3 +31,4 @@
         <a href="{{ route('login') }}">Вернуться ко входу</a>
     </div>
 </x-guest-layout>
+

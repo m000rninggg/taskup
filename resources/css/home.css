@@ -36,7 +36,7 @@ button {
     padding: 20px;
     height: 42px;
 
-    border: 1px solid #303047;
+    border: 1px solid #2D2B3E;
     border-radius: 10px;
 
     cursor: pointer;
@@ -44,15 +44,15 @@ button {
     font-size: 16px;
 
     transition: all 0.35s ease;
-    background: #242236;
+    background: #282840;
     color: #FFFFFF;
     box-shadow: 0 4px 5px rgba(28, 26, 38, .65);
 }
 
 .btn-primary {
-    background: #242236;
+    background: #282840;
     color: #20E6C3;
-    border: 1px solid #303047;
+    border: 1px solid #2D2B3E;
 }
 
 .btn-primary:hover {
@@ -60,9 +60,9 @@ button {
 }
 
 .btn-outline{
-    background: #242236;
+    background: #282840;
     color: #20E6C3;
-    border: 1px solid #303047;
+    border: 1px solid #2D2B3E;
 }
 
 .btn-outline:hover {
@@ -346,7 +346,7 @@ nav a:hover{
     margin-top:10px;
     background:#20E6C3;
     color:#1C1A26;
-    border:1px solid #303047;
+    border:1px solid #2D2B3E;
     cursor: pointer;
 }
 
@@ -359,13 +359,13 @@ nav a:hover{
 .feature-card{
     display:flex;
     gap:16px;
-    align-items:flex-start;
+    align-items:center;
 
     padding:18px;
 
     background:#242236;
 
-    border:1px solid #303047;
+    border:1px solid #2D2B3E;
 
     backdrop-filter:blur(15px);
 
@@ -374,11 +374,17 @@ nav a:hover{
     transition:.3s;
 }
 
+.feature-card > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 .feature-card:hover{
     transform:translateY(-5px);
 
-    border-color:#303047;
+    border-color:#2D2B3E;
 
     box-shadow: 0 15px 30px rgba(28, 26, 38, .45);
     
@@ -396,9 +402,9 @@ nav a:hover{
 }
 
 .btn-primary{
-    background:#242236;
+    background:#282840;
     color:#20E6C3;
-    border:1px solid #303047;
+    border:1px solid #2D2B3E;
 
     border-radius:12px;
 
@@ -421,9 +427,9 @@ nav a:hover{
 }
 
 .btn-outline{
-    background:#242236;
+    background:#282840;
 
-    border:1px solid #303047;
+    border:1px solid #2D2B3E;
 
     color:#20E6C3;
 
@@ -477,8 +483,9 @@ nav a:hover{
 
     backdrop-filter:blur(15px);
 
-    border:1px solid #303047;
+    border:1px solid #2D2B3E;
 
     box-shadow:
         0 20px 60px rgba(28, 26, 38, .55);
 }
+

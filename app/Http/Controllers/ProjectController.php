@@ -9,11 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
+    private function checkAccess(Project $project): void
+    {
+        if (!Auth::user()->teams->contains($project->team)) {
+            abort(403);
+        }
+    }
+
     public function index()
     {
-        // Показываем проекты только из команд пользователя
         $userTeams = Auth::user()->teams;
-        $projects = Project::whereIn('team_id', $userTeams->pluck('id'))->get();
+        $projects = Project::with(['team', 'tasks'])
+            ->whereIn('team_id', $userTeams->pluck('id'))
+            ->latest()
+            ->get();
         
         return view('projects.index', compact('projects'));
     }
@@ -43,12 +52,40 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        // Проверяем, есть ли у пользователя доступ к команде проекта
-        if (!Auth::user()->teams->contains($project->team)) {
-            abort(403);
-        }
-        
-        $project->load('tasks.comments.user');
-        return view('projects.show', compact('project'));
+        $this->checkAccess($project);
+
+        return redirect()->route('projects.tasks', $project);
+    }
+
+    public function main(Project $project)
+    {
+        $this->checkAccess($project);
+
+        $project->load(['team', 'tasks']);
+        return view('projects.main', compact('project'));
+    }
+
+    public function tasks(Project $project)
+    {
+        $this->checkAccess($project);
+
+        $project->load(['tasks.creator', 'tasks.assignedUser', 'tasks.comments.user']);
+        return view('projects.tasks', compact('project'));
+    }
+
+    public function doc(Project $project)
+    {
+        $this->checkAccess($project);
+
+        $project->load(['team', 'documents.updater']);
+        return view('projects.doc', compact('project'));
+    }
+
+    public function analitics(Project $project)
+    {
+        $this->checkAccess($project);
+
+        $project->load(['team', 'tasks']);
+        return view('projects.analitics', compact('project'));
     }
 }

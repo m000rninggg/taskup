@@ -19,7 +19,7 @@
 
             <button
                 type="submit"
-                class="bg-black text-white px-5 py-3 rounded-lg"
+                class="bg-[#282840] text-[#FFFFFF] px-5 py-3 rounded-lg"
             >
                 Создать
             </button>
@@ -29,3 +29,4 @@
     </div>
 
 </x-app-layout>
+

@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-[#242236] border border-[#2D2B3E]'])
 
 @php
 $alignmentClasses = match ($align) {
@@ -28,8 +28,9 @@ $width = match ($width) {
             class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
             style="display: none;"
             @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+        <div class="rounded-md ring-1 ring-[#2D2B3E] ring-opacity-100 {{ $contentClasses }}">
             {{ $content }}
         </div>
     </div>
 </div>
+

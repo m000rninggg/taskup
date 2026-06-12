@@ -7,7 +7,7 @@
             <label for="name">Имя</label>
             <input id="name" class="auth-input" type="text" name="name" value="{{ old('name') }}" required autofocus placeholder="Ваше имя">
             @error('name')
-                <small style="color: #ff6b6b;">{{ $message }}</small>
+                <small style="color: #C2C2D4;">{{ $message }}</small>
             @enderror
         </div>
 
@@ -16,7 +16,7 @@
             <label for="email">Email</label>
             <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required placeholder="your@email.com">
             @error('email')
-                <small style="color: #ff6b6b;">{{ $message }}</small>
+                <small style="color: #C2C2D4;">{{ $message }}</small>
             @enderror
         </div>
 
@@ -25,7 +25,7 @@
             <label for="password">Пароль</label>
             <input id="password" class="auth-input" type="password" name="password" required placeholder="••••••••">
             @error('password')
-                <small style="color: #ff6b6b;">{{ $message }}</small>
+                <small style="color: #C2C2D4;">{{ $message }}</small>
             @enderror
         </div>
 
@@ -34,7 +34,7 @@
             <label for="password_confirmation">Подтверждение пароля</label>
             <input id="password_confirmation" class="auth-input" type="password" name="password_confirmation" required placeholder="••••••••">
             @error('password_confirmation')
-                <small style="color: #ff6b6b;">{{ $message }}</small>
+                <small style="color: #C2C2D4;">{{ $message }}</small>
             @enderror
         </div>
 
@@ -47,3 +47,4 @@
         Уже есть аккаунт? <a href="{{ route('login') }}">Войти</a>
     </div>
 </x-guest-layout>
+

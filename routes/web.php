@@ -6,12 +6,22 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/csrf-token', function () {
+    return response()->json(['token' => csrf_token()]);
+})->name('csrf-token');
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $projects = Project::with(['team', 'tasks'])
+        ->whereIn('team_id', auth()->user()->teams()->pluck('teams.id'))
+        ->latest()
+        ->get();
+
+    return view('dashboard', compact('projects'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -22,8 +32,14 @@ Route::middleware('auth')->group(function () {
     // Teams
     Route::resource('teams', TeamController::class);
     
+    // Project pages
+    Route::get('/projects/{project}/main', [ProjectController::class, 'main'])->name('projects.main');
+    Route::get('/projects/{project}/tasks', [ProjectController::class, 'tasks'])->name('projects.tasks');
+    Route::get('/projects/{project}/doc', [ProjectController::class, 'doc'])->name('projects.doc');
+    Route::get('/projects/{project}/analitics', [ProjectController::class, 'analitics'])->name('projects.analitics');
+
     // Projects (упрощённые маршруты)
-    Route::resource('projects', ProjectController::class);
+    Route::resource('projects', ProjectController::class)->only(['index', 'create', 'store', 'show']);
     
     // Tasks
     Route::post('/projects/{project}/tasks', [TaskController::class, 'store'])->name('tasks.store');

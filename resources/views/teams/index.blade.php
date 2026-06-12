@@ -10,7 +10,7 @@
 
             <a
                 href="{{ route('teams.create') }}"
-                class="bg-black text-white px-4 py-2 rounded-lg"
+                class="bg-[#282840] text-[#FFFFFF] px-4 py-2 rounded-lg"
             >
                 Создать команду
             </a>
@@ -29,7 +29,7 @@
 
                     <a
                         href="{{ route('projects.index', $team) }}"
-                        class="text-blue-600"
+                        class="text-[#20E6C3]"
                     >
                         Открыть проекты
                     </a>
@@ -43,3 +43,4 @@
     </div>
 
 </x-app-layout>
+

@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Rubik:wght@400;500;600;700;800;900&display=swap');
 
+:root {
+    --color-accent: #20E6C3;
+    --color-preaccent: #339989;
+    --color-bg-start: #23213A;
+    --color-bg-end: #1C1A26;
+    --color-button: #282840;
+    --color-border: #2D2B3E;
+    --color-main: #FFFFFF;
+    --color-secondary: #C2C2D4;
+    --color-tertiary: #8C8CA3;
+    --color-kanban-card: #242236;
+    --color-divider: #312F3C;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,8 +26,8 @@ html {
 
 body {
     font-family: 'Manrope', sans-serif;
-    background: linear-gradient(135deg, #23213A 0%, #1C1A26 100%);
-    color: #FFFFFF;
+    background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+    color: var(--color-main);
     line-height: 1.5;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -37,8 +51,8 @@ footer {
     align-items: center;
     gap: 30px;
     padding: 60px 24px 40px;
-    border-top: 1px solid #312F3C;
-    color: #C2C2D4;
+    border-top: 1px solid var(--color-divider);
+    color: var(--color-secondary);
 }
 
 .footer-logo {
@@ -52,15 +66,16 @@ footer {
 }
 
 .footer-nav a {
-    color: #C2C2D4;
+    color: var(--color-secondary);
     transition: .3s;
 }
 
 .footer-nav a:hover {
-    color: #20E6C3;
+    color: var(--color-accent);
 }
 
 footer p {
-    color: #8C8CA3;
+    color: var(--color-tertiary);
     text-align: center;
 }
+

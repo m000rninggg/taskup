@@ -12,6 +12,7 @@ class Task extends Model
     protected $fillable = [
         'project_id',
         'assigned_user_id',
+        'created_by',
         'title',
         'description',
         'status',
@@ -26,6 +27,11 @@ class Task extends Model
     public function assignedUser()
     {
         return $this->belongsTo(User::class, 'assigned_user_id');
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function comments()

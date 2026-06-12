@@ -88,7 +88,7 @@
     align-items: center;
     border-radius: 12px;
     background: #242236;
-    border: 1px solid #303047;
+    border: 1px solid #2D2B3E;
     color: #20E6C3;
 }
 
@@ -99,7 +99,7 @@
     backdrop-filter: blur(15px);
     border-radius: 28px;
     box-shadow: 0 20px 60px rgba(28, 26, 38, .55);
-    border: 1px solid #303047;
+    border: 1px solid #2D2B3E;
 }
 
 .auth-logo {
@@ -140,7 +140,7 @@
 .auth-input {
     width: 100%;
     background: #242236;
-    border: 1px solid #303047;
+    border: 1px solid #2D2B3E;
     border-radius: 12px;
     padding: 15px 18px;
     color: #FFFFFF;
@@ -153,16 +153,16 @@
 
 .auth-input:focus {
     outline: none;
-    border-color: #303047;
+    border-color: #2D2B3E;
     box-shadow: 0 0 15px rgba(32, 230, 195, .15);
 }
 
 .auth-btn {
     margin-top: 10px;
     border-radius: 12px;
-    background: #242236;
+    background: #282840;
     color: #20E6C3;
-    border: 1px solid #303047;
+    border: 1px solid #2D2B3E;
     font-weight: 600;
     padding: 16px;
     cursor: pointer;
@@ -234,3 +234,4 @@
         font-size: 38px;
     }
 }
+
