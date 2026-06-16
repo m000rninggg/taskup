@@ -1,6 +1,6 @@
 @props(['value'])
 
-<label {{ $attributes->merge(['class' => 'block font-medium text-sm text-[#C2C2D4]']) }}>
+<label {{ $attributes->merge(['class' => 'breeze-label']) }}>
     {{ $value ?? $slot }}
 </label>
 

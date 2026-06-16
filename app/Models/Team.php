@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
@@ -13,6 +13,13 @@ class Team extends Model
         'name',
         'owner_id',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'owner_id' => 'integer',
+        ];
+    }
 
     public function owner()
     {

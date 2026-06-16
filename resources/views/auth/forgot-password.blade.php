@@ -1,11 +1,10 @@
 <x-guest-layout>
-    <div class="auth-subtitle" style="margin-bottom: 20px;">
+    <div class="auth-subtitle auth-subtitle-compact">
         Забыли пароль? Введите ваш email, и мы отправим ссылку для сброса.
     </div>
 
-    <!-- Session Status -->
     @if (session('status'))
-        <div style="color: #20E6C3; text-align: center; margin-bottom: 16px;">
+        <div class="auth-status">
             {{ session('status') }}
         </div>
     @endif
@@ -13,12 +12,11 @@
     <form method="POST" action="{{ route('password.email') }}" class="auth-form">
         @csrf
 
-        <!-- Email Address -->
         <div class="form-group">
             <label for="email">Email</label>
             <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="your@email.com">
             @error('email')
-                <small style="color: #C2C2D4;">{{ $message }}</small>
+                <small class="auth-error">{{ $message }}</small>
             @enderror
         </div>
 

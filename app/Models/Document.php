@@ -10,7 +10,9 @@ class Document extends Model
 
     protected $fillable = [
         'project_id',
+        'request_token',
         'title',
+        'category',
         'content',
         'updated_by',
     ];

@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (!Schema::hasTable('tasks')) {
+        if (! Schema::hasTable('tasks')) {
             return;
         }
 
@@ -19,14 +19,14 @@ return new class extends Migration
         }
 
         if ($driver === 'pgsql') {
-            DB::statement("ALTER TABLE tasks ALTER COLUMN status TYPE VARCHAR(50)");
+            DB::statement('ALTER TABLE tasks ALTER COLUMN status TYPE VARCHAR(50)');
             DB::statement("ALTER TABLE tasks ALTER COLUMN status SET DEFAULT 'todo'");
         }
     }
 
     public function down(): void
     {
-        if (!Schema::hasTable('tasks')) {
+        if (! Schema::hasTable('tasks')) {
             return;
         }
 

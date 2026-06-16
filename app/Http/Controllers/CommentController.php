@@ -13,12 +13,12 @@ class CommentController extends Controller
     {
         $task->load('project.team');
 
-        if (!Auth::user()->teams->contains($task->project->team)) {
+        if (! Auth::user()->teams->contains($task->project->team)) {
             abort(403);
         }
 
         $request->validate([
-            'content' => 'required|string',
+            'content' => 'required|string|max:2000',
         ]);
 
         Comment::create([

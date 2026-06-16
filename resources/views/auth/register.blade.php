@@ -2,39 +2,43 @@
     <form method="POST" action="{{ route('register') }}" class="auth-form">
         @csrf
 
-        <!-- Name -->
         <div class="form-group">
             <label for="name">Имя</label>
             <input id="name" class="auth-input" type="text" name="name" value="{{ old('name') }}" required autofocus placeholder="Ваше имя">
             @error('name')
-                <small style="color: #C2C2D4;">{{ $message }}</small>
+                <small class="auth-error">{{ $message }}</small>
             @enderror
         </div>
 
-        <!-- Email Address -->
+        <div class="form-group">
+            <label for="username">Логин</label>
+            <input id="username" class="auth-input" type="text" name="username" value="{{ old('username') }}" required placeholder="username">
+            @error('username')
+                <small class="auth-error">{{ $message }}</small>
+            @enderror
+        </div>
+
         <div class="form-group">
             <label for="email">Email</label>
             <input id="email" class="auth-input" type="email" name="email" value="{{ old('email') }}" required placeholder="your@email.com">
             @error('email')
-                <small style="color: #C2C2D4;">{{ $message }}</small>
+                <small class="auth-error">{{ $message }}</small>
             @enderror
         </div>
 
-        <!-- Password -->
         <div class="form-group">
             <label for="password">Пароль</label>
             <input id="password" class="auth-input" type="password" name="password" required placeholder="••••••••">
             @error('password')
-                <small style="color: #C2C2D4;">{{ $message }}</small>
+                <small class="auth-error">{{ $message }}</small>
             @enderror
         </div>
 
-        <!-- Confirm Password -->
         <div class="form-group">
             <label for="password_confirmation">Подтверждение пароля</label>
             <input id="password_confirmation" class="auth-input" type="password" name="password_confirmation" required placeholder="••••••••">
             @error('password_confirmation')
-                <small style="color: #C2C2D4;">{{ $message }}</small>
+                <small class="auth-error">{{ $message }}</small>
             @enderror
         </div>
 

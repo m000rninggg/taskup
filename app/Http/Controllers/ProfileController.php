@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +18,33 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = $request->user();
+
+        $projectsCount = Project::whereIn(
+            'team_id',
+            $user->teams()->pluck('teams.id')
+        )->count();
+
+        $activeTasksCount = Task::where('assigned_user_id', $user->id)
+            ->whereIn('status', ['in_progress', 'testing'])
+            ->count();
+
+        $completedTasksCount = Task::where('assigned_user_id', $user->id)
+            ->where('status', 'done')
+            ->count();
+
+        $overdueTasksCount = Task::where('assigned_user_id', $user->id)
+            ->whereNotNull('deadline')
+            ->where('deadline', '<', now())
+            ->where('status', '!=', 'done')
+            ->count();
+
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
+            'projectsCount' => $projectsCount,
+            'activeTasksCount' => $activeTasksCount,
+            'completedTasksCount' => $completedTasksCount,
+            'overdueTasksCount' => $overdueTasksCount,
         ]);
     }
 

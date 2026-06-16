@@ -26,9 +26,9 @@ return new class extends Migration
             $table->enum('status', [
                 'todo',
                 'in_progress',
-                'done'
+                'done',
             ])->default('todo');
-            
+
             $table->timestamp('deadline')->nullable();
             $table->timestamps();
         });

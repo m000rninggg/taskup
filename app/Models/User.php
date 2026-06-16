@@ -7,7 +7,6 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Team;
 
 class User extends Authenticatable
 {
@@ -21,6 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
     ];
@@ -58,11 +58,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Team::class);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function assignedTasks(){
+    public function assignedTasks()
+    {
         return $this->hasMany(Task::class, 'assigned_user_id');
     }
 }

@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    public function store(Request $request, Project $project)
+    private function checkAccess(Project $project): void
     {
-        if (!Auth::user()->teams->contains($project->team)) {
+        if (! Auth::user()->teams->contains($project->team)) {
             abort(403);
         }
+    }
 
-        $validated = $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'nullable',
-            'deadline' => 'nullable|date',
-            'status' => 'required|in:todo,in_progress,testing,done',
-        ]);
+    public function store(Request $request, Project $project)
+    {
+        $this->checkAccess($project);
+
+        $validated = $this->validateTask($request);
 
         Task::create([
             'project_id' => $project->id,
@@ -33,5 +33,46 @@ class TaskController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function update(Request $request, Task $task)
+    {
+        $this->checkAccess($task->project);
+
+        $task->update($this->validateTask($request));
+
+        return redirect()->back();
+    }
+
+    public function updateStatus(Request $request, Task $task)
+    {
+        $this->checkAccess($task->project);
+
+        $validated = $request->validate([
+            'status' => 'required|in:todo,in_progress,testing,done',
+        ]);
+
+        $task->update($validated);
+
+        return redirect()->back();
+    }
+
+    public function destroy(Task $task)
+    {
+        $this->checkAccess($task->project);
+
+        $task->delete();
+
+        return redirect()->back();
+    }
+
+    private function validateTask(Request $request): array
+    {
+        return $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'deadline' => 'nullable|date',
+            'status' => 'required|in:todo,in_progress,testing,done',
+        ]);
     }
 }

@@ -151,6 +151,46 @@
     color: #8C8CA3;
 }
 
+.auth-subtitle-compact {
+    margin-bottom: 20px;
+}
+
+.auth-status {
+    margin-bottom: 16px;
+    color: #20E6C3;
+    text-align: center;
+}
+
+.auth-error {
+    color: #C2C2D4;
+}
+
+.auth-remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-remember input {
+    width: 18px;
+    height: 18px;
+}
+
+.auth-remember label {
+    margin: 0;
+    color: #C2C2D4;
+    font-size: 14px;
+}
+
+.auth-forgot {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-forgot a {
+    color: #20E6C3;
+}
+
 .auth-input:focus {
     outline: none;
     border-color: #2D2B3E;
