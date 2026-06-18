@@ -3,14 +3,38 @@
 /* Стили только для страницы логина — переопределяем body */
 .auth-body {
     min-height: 100vh;
+    margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     background: linear-gradient(135deg, #23213A 0%, #1C1A26 100%);
     background-size: cover;
     background-position: center;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: 'Manrope', sans-serif;
+}
+
+.auth-body > header,
+.auth-body > footer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.auth-body header .container {
+    margin-bottom: 0;
+}
+
+.auth-main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
 }
 
 .auth-body::before {
@@ -45,14 +69,19 @@
     display: flex;
     align-items: center;
     gap: 80px;
+    width: min(100% - 48px, 1030px);
+    max-height: none;
+    padding: 48px 0;
+    margin: 0 auto;
 }
 
 .auth-info {
-    width: 420px;
+    flex: 0 1 420px;
+    min-width: 0;
 }
 
 .auth-info h2 {
-    font-size: 54px;
+    font-size: clamp(38px, 5vw, 54px);
     margin-bottom: 20px;
     font-family: 'Rubik', sans-serif;
 }
@@ -93,8 +122,10 @@
 }
 
 .auth-card {
-    width: 450px;
-    padding: 50px;
+    flex: 0 1 450px;
+    width: 100%;
+    min-width: 0;
+    padding: clamp(28px, 4vw, 50px);
     background: #242236;
     backdrop-filter: blur(15px);
     border-radius: 28px;
@@ -104,7 +135,7 @@
 
 .auth-logo {
     text-align: center;
-    font-size: 48px;
+    font-size: clamp(36px, 5vw, 48px);
     font-weight: 700;
     margin-bottom: 10px;
     font-family: 'Rubik', sans-serif;
@@ -124,6 +155,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 0;
 }
 
 .form-group {
@@ -139,6 +171,8 @@
 
 .auth-input {
     width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     background: #242236;
     border: 1px solid #2D2B3E;
     border-radius: 12px;
@@ -207,6 +241,7 @@
     padding: 16px;
     cursor: pointer;
     transition: .3s;
+    white-space: normal;
 }
 
 .auth-btn:hover {
@@ -248,30 +283,103 @@
 }
 
 @media (max-width: 1000px) {
+    .auth-main {
+        align-items: flex-start;
+    }
+
     .auth-wrapper {
         flex-direction: column;
-        padding: 30px;
+        gap: 32px;
+        width: min(100% - 32px, 560px);
+        padding: 30px 0;
     }
+
     .auth-info {
+        flex: none;
         width: 100%;
-        max-width: 550px;
         text-align: center;
     }
+
     .auth-card {
+        flex: none;
         width: 100%;
         max-width: 500px;
     }
 }
 
 @media (max-width: 600px) {
+    .auth-body::before {
+        width: 420px;
+        height: 420px;
+        top: -180px;
+        left: -220px;
+    }
+
+    .auth-body::after {
+        width: 360px;
+        height: 360px;
+        right: -200px;
+        bottom: -170px;
+    }
+
+    .auth-wrapper {
+        width: min(100% - 24px, 430px);
+        gap: 24px;
+        padding: 20px 0 32px;
+    }
+
+    .auth-info {
+        display: none;
+    }
+
     .auth-card {
-        padding: 35px 25px;
+        padding: 28px 20px;
+        border-radius: 18px;
     }
+
     .auth-logo {
-        font-size: 38px;
+        font-size: 36px;
     }
-    .auth-info h2 {
-        font-size: 38px;
+
+    .auth-subtitle {
+        margin-bottom: 28px;
+    }
+
+    .auth-form {
+        gap: 16px;
+    }
+
+    .auth-remember,
+    .auth-forgot {
+        justify-content: flex-start;
+    }
+
+    .auth-btn {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .auth-links {
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 380px) {
+    .auth-wrapper {
+        width: min(100% - 16px, 340px);
+        padding: 12px 0;
+    }
+
+    .auth-card {
+        padding: 22px 14px;
+    }
+
+    .auth-logo {
+        font-size: 32px;
+    }
+
+    .auth-subtitle {
+        font-size: 14px;
     }
 }
 

@@ -228,6 +228,10 @@ header #header-navigation[hidden] {
     gap:30px;
 }
 
+.header-nav-auth {
+    display: none;
+}
+
 .header-nav-logout {
     display: flex;
     align-items: center;
@@ -648,9 +652,14 @@ nav a:hover{
         display: none;
     }
 
+    header .container > .auth-buttons {
+        display: none;
+    }
+
     header #header-navigation > .nav-link,
     header #header-navigation > .header-cabinet,
-    header #header-navigation > .header-nav-logout {
+    header #header-navigation > .header-nav-logout,
+    header #header-navigation > .header-nav-auth {
         width: 100%;
         min-height: 44px;
         justify-content: flex-start;
@@ -662,6 +671,24 @@ nav a:hover{
         display: flex;
         align-items: center;
         padding: 0 12px;
+    }
+
+    header #header-navigation > .header-nav-auth {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    header #header-navigation > .header-nav-auth a {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 12px;
+    }
+
+    header #header-navigation > .header-nav-auth a + a {
+        border-top: 1px solid #312F3C;
     }
 
     header #header-navigation > :last-child {

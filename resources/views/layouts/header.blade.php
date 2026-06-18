@@ -50,6 +50,12 @@
                     <button class="btn-logout" type="submit">Выйти</button>
                 </form>
             @endauth
+            @guest
+                <div class="auth-buttons header-nav-auth">
+                    <a class="btn-login" href="{{ route('login') }}">Вход</a>
+                    <a class="btn-register" href="{{ route('register') }}">Регистрация</a>
+                </div>
+            @endguest
         </nav>
         <div class="auth-buttons">
             @guest

@@ -36,7 +36,7 @@
     ]
   },
   "resources/css/home.css": {
-    "file": "assets/home-BxiXBqmu.css",
+    "file": "assets/home-ClfDvmul.css",
     "src": "resources/css/home.css",
     "isEntry": true,
     "name": "home",
@@ -45,7 +45,7 @@
     ]
   },
   "resources/css/login.css": {
-    "file": "assets/login-RgiXMPYh.css",
+    "file": "assets/login-CygoFiuc.css",
     "src": "resources/css/login.css",
     "isEntry": true,
     "name": "login",
