@@ -70,7 +70,7 @@
                                 <span>Редактировать</span>
                             </button>
 
-                            <form action="{{ route('tasks.destroy', $task) }}" method="POST">
+                            <form action="{{ route('tasks.destroy', $task, absolute: false) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button

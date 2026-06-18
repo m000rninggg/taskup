@@ -1,0 +1,127 @@
+﻿.task-modal {
+    position: fixed;
+    inset: 0;
+    width: min(440px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    margin: auto;
+    padding: 0;
+    overflow-y: auto;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    background: var(--color-kanban-card);
+    color: var(--color-main);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
+}
+
+.task-modal::backdrop {
+    background: rgba(12, 11, 20, .78);
+    backdrop-filter: blur(5px);
+}
+
+.task-modal-form {
+    display: grid;
+    gap: 18px;
+    padding: 24px;
+}
+
+.task-modal-header,
+.task-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.task-modal-header h2 {
+    font-size: 22px;
+}
+
+.task-modal-close {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: var(--color-bg-end);
+    color: var(--color-tertiary);
+    box-shadow: none;
+}
+
+.task-modal-close:hover {
+    color: var(--color-accent);
+}
+
+.task-modal-form label {
+    display: grid;
+    gap: 8px;
+    color: var(--color-secondary);
+    font-size: 14px;
+}
+
+.task-modal-form input,
+.task-modal-form textarea,
+.task-modal-form select {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-bg-end);
+    color: var(--color-main);
+    font: inherit;
+    outline: none;
+}
+
+.task-modal-form input {
+    height: 44px;
+    padding: 0 14px;
+}
+
+.task-modal-form select {
+    height: 44px;
+    padding: 0 40px 0 14px;
+}
+
+.task-modal-form textarea {
+    min-height: 108px;
+    resize: vertical;
+    padding: 12px 14px;
+}
+
+.task-modal-form input:focus,
+.task-modal-form textarea:focus,
+.task-modal-form select:focus {
+    border-color: var(--color-accent);
+}
+
+.task-modal-actions {
+    justify-content: flex-end;
+    margin-top: 4px;
+}
+
+.task-modal-cancel,
+.task-modal-submit {
+    width: auto;
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 10px;
+    box-shadow: none;
+    font-weight: 700;
+}
+
+.task-modal-cancel {
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-secondary);
+}
+
+.task-modal-submit {
+    border: 1px solid var(--color-border);
+    background: var(--color-button);
+    color: var(--color-accent);
+}
+
+.task-modal-cancel:hover,
+.task-modal-submit:hover {
+    transform: translateY(-2px);
+}
+
+

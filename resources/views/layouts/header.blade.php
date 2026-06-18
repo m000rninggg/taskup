@@ -42,11 +42,10 @@
                     </div>
                 </div>
             @endauth
-            <a class="nav-link" href="{{ route('home') }}#product">О продукте</a>
-            <a class="nav-link" href="{{ route('home') }}#features">Возможности</a>
+            <a class="nav-link" href="{{ request()->routeIs('home') ? '#features' : route('home') . '#features' }}">Возможности</a>
             <a class="nav-link" href="{{ route('home') }}#help">Помощь</a>
             @auth
-                <form class="header-nav-logout" action="{{ route('logout') }}" method="POST">
+                <form class="header-nav-logout" action="{{ route('logout', absolute: false) }}" method="POST">
                     @csrf
                     <button class="btn-logout" type="submit">Выйти</button>
                 </form>
@@ -60,4 +59,3 @@
         </div>
     </div>
 </header>
-

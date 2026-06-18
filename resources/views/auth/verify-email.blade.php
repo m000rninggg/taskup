@@ -10,7 +10,7 @@
     @endif
 
     <div class="breeze-actions breeze-actions-between">
-        <form method="POST" action="{{ route('verification.send') }}">
+        <form method="POST" action="{{ route('verification.send', absolute: false) }}">
             @csrf
 
             <div>
@@ -20,7 +20,7 @@
             </div>
         </form>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ route('logout', absolute: false) }}">
             @csrf
 
             <button type="submit" class="breeze-link-button">

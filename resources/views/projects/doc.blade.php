@@ -88,7 +88,7 @@
             <dialog class="document-modal" id="create-document-modal">
                 <form
                     class="document-modal-form"
-                    action="{{ route('documents.store', $project) }}"
+                    action="{{ route('documents.store', $project, absolute: false) }}"
                     method="POST"
                     data-prevent-double-submit
                 >

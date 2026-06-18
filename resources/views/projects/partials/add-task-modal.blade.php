@@ -1,5 +1,5 @@
 <dialog class="task-modal" id="add-task-{{ $status }}">
-    <form class="task-modal-form" action="{{ route('tasks.store', $project) }}" method="POST">
+    <form class="task-modal-form" action="{{ route('tasks.store', $project, absolute: false) }}" method="POST">
         @csrf
         <input type="hidden" name="status" value="{{ $status }}">
 

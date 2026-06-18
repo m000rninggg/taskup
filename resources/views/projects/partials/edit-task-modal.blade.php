@@ -3,7 +3,7 @@
 @endphp
 
 <dialog class="task-modal" id="{{ $editModalId }}">
-    <form class="task-modal-form" action="{{ route('tasks.update', $task) }}" method="POST">
+    <form class="task-modal-form" action="{{ route('tasks.update', $task, absolute: false) }}" method="POST">
         @csrf
         @method('PATCH')
 

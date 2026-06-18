@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,9 @@ class TaskController extends Controller
 {
     private function checkAccess(Project $project): void
     {
-        if (! Auth::user()->teams->contains($project->team)) {
+        $user = Auth::user();
+
+        if (! $user instanceof User || ! $user->teams->contains($project->team)) {
             abort(403);
         }
     }
@@ -53,6 +56,12 @@ class TaskController extends Controller
         ]);
 
         $task->update($validated);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => $task->status,
+            ]);
+        }
 
         return redirect()->back();
     }

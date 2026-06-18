@@ -1,6 +1,7 @@
 <x-app-layout>
     @push('styles')
-        @vite('resources/css/dashboard.css')
+        @vite('resources/css/workspace.css')
+        @vite('resources/css/profile.css')
     @endpush
 
     <x-slot name="header">
@@ -9,7 +10,9 @@
         </h2>
     </x-slot>
 
-    <div class="breeze-page">
+    <img src="{{ asset('images/background_img.png') }}" class="workspace-bg-img" alt="">
+
+    <div class="breeze-page profile-page">
         <div class="breeze-page-container">
             <section class="stat profile-activity">
                 <h3>Ваша активность:</h3>

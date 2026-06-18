@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -25,9 +26,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer('projects.partials.sidebar', function ($view): void {
             $workspaceProjects = collect();
 
-            if (Auth::check()) {
+            $user = Auth::user();
+
+            if ($user instanceof User) {
                 $workspaceProjects = Project::query()
-                    ->whereIn('team_id', Auth::user()->teams()->select('teams.id'))
+                    ->whereIn('team_id', $user->teams()->select('teams.id'))
                     ->orderBy('title')
                     ->get();
             }

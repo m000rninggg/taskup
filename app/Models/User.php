@@ -5,6 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,22 +50,22 @@ class User extends Authenticatable
         ];
     }
 
-    public function ownedTeams()
+    public function ownedTeams(): HasMany
     {
         return $this->hasMany(Team::class, 'owner_id');
     }
 
-    public function teams()
+    public function teams(): BelongsToMany
     {
         return $this->belongsToMany(Team::class);
     }
 
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function assignedTasks()
+    public function assignedTasks(): HasMany
     {
         return $this->hasMany(Task::class, 'assigned_user_id');
     }

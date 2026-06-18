@@ -10,18 +10,27 @@ use App\Http\Controllers\TeamController;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
-    $user = Auth::user();
-    $teamIds = $user->teams()->pluck('teams.id');
+    $userId = Auth::id();
+
+    if ($userId === null) {
+        abort(403);
+    }
+
+    $teamIds = DB::table('team_user')
+        ->where('user_id', $userId)
+        ->pluck('team_id');
+
     $projectIds = Project::whereIn('team_id', $teamIds)->pluck('id');
 
     $upcomingDeadlines = Task::with('project')
         ->whereIn('project_id', $projectIds)
-        ->where('assigned_user_id', $user->id)
+        ->where('assigned_user_id', $userId)
         ->whereNotNull('deadline')
         ->where('status', '!=', 'done')
         ->whereDate('deadline', '>=', now()->toDateString())
@@ -31,7 +40,7 @@ Route::get('/dashboard', function () {
 
     $myTasks = Task::with('project')
         ->whereIn('project_id', $projectIds)
-        ->where('assigned_user_id', $user->id)
+        ->where('assigned_user_id', $userId)
         ->where('status', '!=', 'done')
         ->latest()
         ->limit(5)
@@ -47,7 +56,7 @@ Route::get('/dashboard', function () {
             'done' => 'Готово',
         ],
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -55,8 +64,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Teams
-    Route::post('/teams/{team}/members', [TeamController::class, 'addMember'])->name('teams.members.store');
-    Route::resource('teams', TeamController::class)->only(['index', 'store']);
+    Route::get('/teams/create', fn () => abort(404));
+    Route::delete('/teams/{team}/members/{user}', [TeamController::class, 'removeMember'])->name('teams.members.destroy');
+    Route::delete('/teams/{team}/leave', [TeamController::class, 'leave'])->name('teams.leave');
+    Route::resource('teams', TeamController::class)->only(['index', 'store', 'update', 'destroy']);
 
     // Project pages
     Route::get('/projects/{project}/main', [ProjectController::class, 'main'])->name('projects.main');

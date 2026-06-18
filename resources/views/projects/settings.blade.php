@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('projects.settings.update', $project) }}" method="POST" class="settings-form">
+                    <form action="{{ route('projects.settings.update', $project, absolute: false) }}" method="POST" class="settings-form">
                         @csrf
                         @method('PATCH')
 
@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('projects.members.store', $project) }}" method="POST" class="settings-member-form">
+                    <form action="{{ route('projects.members.store', $project, absolute: false) }}" method="POST" class="settings-member-form">
                         @csrf
                         <label>
                             <span>Никнейм пользователя</span>

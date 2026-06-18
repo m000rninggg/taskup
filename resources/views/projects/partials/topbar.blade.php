@@ -10,9 +10,7 @@
                 <span title="{{ $member->name }}">{{ mb_substr($member->name, 0, 1) }}</span>
             @endforeach
         </div>
-        <button type="button" class="share-btn" aria-label="Поделиться">
-            <i class="fa-solid fa-share-nodes"></i>
-        </button>
+        <span class="user-panel-divider" aria-hidden="true"></span>
         <span class="user-name">{{ auth()->user()->name }}</span>
         <span class="user-avatar">{{ mb_substr(auth()->user()->name, 0, 1) }}</span>
     </div>

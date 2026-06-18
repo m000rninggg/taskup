@@ -42,7 +42,7 @@
                 </div>
                 <a href="#features" class="link-more">Хотите узнать больше?</a>
             </div>
-        
+
             <div class="hero-content">
                 <img src="{{ asset('images/logo.svg') }}" alt="TaskUp" class="hero-logo">
                 <p>Это сайт для оптимизации командной работы. Он объединяет управление задачами и ведение документации
@@ -57,30 +57,37 @@
     </div>
 
     <section class="features-section" id="features">
-
         <div class="container">
             <div class="feature-block">
-                <h3>Kanban-доски</h3>
-                <p>TaskUp предоставляет возможность <b>создавать Kanban-доски</b> для ваших
-                проектов. Благодаря им можно легко управлять рабочим процессом и оптимизировать его. Назначайте задачи,
-                редактируйте приоритеты, комментируйте идеи, следите за продуктивностью команды.</p>
-                <a class="btn-outline" href="{{ auth()->check() ? route('projects.index') : route('register') }}">Создать Kanban-доску</a>
+                <h3>Команды</h3>
+                <p>TaskUp помогает <b>создавать команды и подключать участников</b> к общей работе. Собирайте людей вокруг проекта, распределяйте задачи и держите командное пространство в одном месте.</p>
+                <a class="btn-outline" href="{{ auth()->check() ? route('teams.index') : route('register') }}">Создать команду</a>
             </div>
-            <div class="feature-image" role="img" aria-label="Пример Kanban-доски"></div>
+            <div class="feature-image">
+                <img src="{{ asset('images/создание команды.jpg') }}" alt="Создание команды в TaskUp">
+            </div>
         </div>
 
         <div class="container">
-            <div class="feature-image" role="img" aria-label="Пример документации"></div>
+            <div class="feature-image">
+                <img src="{{ asset('images/Канбан доска.jpg') }}" alt="Kanban-доска проекта в TaskUp">
+            </div>
+            <div class="feature-block">
+                <h3>Kanban-доски</h3>
+                <p>TaskUp предоставляет возможность <b>создавать Kanban-доски</b> для ваших проектов. Благодаря им можно легко управлять рабочим процессом, назначать задачи, редактировать приоритеты, комментировать идеи и следить за продуктивностью команды.</p>
+                <a class="btn-outline" href="{{ auth()->check() ? route('projects.index') : route('register') }}">Создать Kanban-доску</a>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="feature-block">
                 <h3>Документация</h3>
-                <p>Благодаря TaskUp вы можете <b>продуктивно работать с документацией проекта</b>.
-                Создание блоков и списков, описание правил и технических требований. Вся нужная информация
-                хранится на одной странице в проектом.
-                </p>
+                <p>Благодаря TaskUp вы можете <b>продуктивно работать с документацией проекта</b>. Создавайте блоки и списки, описывайте правила и технические требования, чтобы вся нужная информация хранилась на одной странице проекта.</p>
                 <a class="btn-outline" href="{{ auth()->check() ? route('projects.index') : route('register') }}">Создать документацию</a>
+            </div>
+            <div class="feature-image">
+                <img src="{{ asset('images/Документация.jpg') }}" alt="Документация проекта в TaskUp">
             </div>
         </div>
     </section>
 @endsection
-
-

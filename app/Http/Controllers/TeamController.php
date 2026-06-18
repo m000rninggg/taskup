@@ -68,24 +68,67 @@ class TeamController extends Controller
             ->with('status', 'Команда создана.');
     }
 
-    public function addMember(Request $request, Team $team): RedirectResponse
+    public function update(Request $request, Team $team): RedirectResponse
     {
         abort_unless($team->owner_id === auth()->id(), 403);
 
         $request->merge([
-            'username' => strtolower((string) $request->username),
+            'username' => strtolower(trim((string) $request->username)),
         ]);
 
-        $validated = $request->validate([
-            'username' => ['required', 'string', 'exists:users,username'],
+        $validated = $request->validateWithBag('team_edit_'.$team->id, [
+            'name' => ['required', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'exists:users,username'],
         ]);
 
-        $member = User::where('username', $validated['username'])->firstOrFail();
+        DB::transaction(function () use ($team, $validated): void {
+            $team->update([
+                'name' => $validated['name'],
+            ]);
 
-        $team->users()->syncWithoutDetaching([$member->id]);
+            if (! empty($validated['username'])) {
+                $member = User::where('username', $validated['username'])->firstOrFail();
+                $team->users()->syncWithoutDetaching([$member->id]);
+            }
+        });
 
         return redirect()
             ->route('teams.index')
-            ->with('status', 'Пользователь добавлен в команду.');
+            ->with('status', 'Команда обновлена.');
+    }
+
+    public function destroy(Team $team): RedirectResponse
+    {
+        abort_unless($team->owner_id === auth()->id(), 403);
+
+        $team->delete();
+
+        return redirect()
+            ->route('teams.index')
+            ->with('status', 'Команда удалена.');
+    }
+
+    public function removeMember(Team $team, User $user): RedirectResponse
+    {
+        abort_unless($team->owner_id === auth()->id(), 403);
+        abort_if($user->id === $team->owner_id, 403);
+
+        $team->users()->detach($user->id);
+
+        return redirect()
+            ->route('teams.index')
+            ->with('status', 'Участник удален из команды.');
+    }
+
+    public function leave(Team $team): RedirectResponse
+    {
+        abort_unless($team->users()->whereKey(auth()->id())->exists(), 403);
+        abort_if($team->owner_id === auth()->id(), 403);
+
+        $team->users()->detach(auth()->id());
+
+        return redirect()
+            ->route('teams.index')
+            ->with('status', 'Вы вышли из команды.');
     }
 }

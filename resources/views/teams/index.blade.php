@@ -2,7 +2,8 @@
 @section('title', 'Команды - TaskUP')
 
 @push('styles')
-    @vite('resources/css/dashboard.css')
+    @vite('resources/css/workspace.css')
+    @vite('resources/css/directory.css')
 @endpush
 
 @section('content')
@@ -50,36 +51,160 @@
                     </p>
                 </article>
 
-                <div class="team-actions">
-                    <div class="tools-bar">
-                        <a class="tool-look" href="{{ route('projects.index') }}">
-                            <img src="{{ asset('images/look.svg') }}" alt="">
-                            <p>Открыть проекты</p>
-                        </a>
+                @if ($team->owner_id === auth()->id())
+                    <div class="tools-bar team-card-tools">
+                        <button
+                            type="button"
+                            class="tool-edit"
+                            onclick="document.getElementById('edit-team-{{ $team->id }}').showModal()"
+                        >
+                            <img src="{{ asset('images/edit.svg') }}" alt="">
+                            <p>Редактировать</p>
+                        </button>
+                        <button
+                            type="button"
+                            class="tool-delete"
+                            aria-label="Удалить команду"
+                            onclick="document.getElementById('delete-team-{{ $team->id }}').showModal()"
+                        >
+                            <img src="{{ asset('images/delete.svg') }}" alt="">
+                        </button>
                     </div>
 
-                    @if ($team->owner_id === auth()->id())
-                        <form action="{{ route('teams.members.store', $team) }}" method="POST" class="team-member-form">
-                            @csrf
-                            <label class="breeze-visually-hidden" for="team-member-{{ $team->id }}">Никнейм пользователя</label>
-                            <input
-                                id="team-member-{{ $team->id }}"
-                                type="text"
-                                name="username"
-                                placeholder="Никнейм пользователя"
-                                required
-                            >
-                            <button type="submit">
-                                <i class="fa-solid fa-plus"></i>
-                                <span>Добавить участника</span>
-                            </button>
-                        </form>
+                    <dialog class="project-create-modal team-edit-modal" id="edit-team-{{ $team->id }}">
+                        <div class="project-create-modal-form">
+                            <div class="project-create-modal-header">
+                                <h2>Редактировать команду</h2>
+                                <button
+                                    type="button"
+                                    class="project-create-modal-close"
+                                    aria-label="Закрыть"
+                                    onclick="document.getElementById('edit-team-{{ $team->id }}').close()"
+                                >
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
 
-                        @error('username')
-                            <p class="team-form-error">{{ $message }}</p>
-                        @enderror
-                    @endif
-                </div>
+                            <form action="{{ route('teams.update', $team, absolute: false) }}" method="POST" class="team-edit-form">
+                                @csrf
+                                @method('PATCH')
+
+                                <label>
+                                    <span>Название команды</span>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value="{{ old('name', $team->name) }}"
+                                        placeholder="Введите название"
+                                        required
+                                    >
+                                    @error('name', 'team_edit_'.$team->id)
+                                        <small class="project-create-error">{{ $message }}</small>
+                                    @enderror
+                                </label>
+
+                                <label>
+                                    <span>Добавить участника</span>
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        value="{{ old('username') }}"
+                                        placeholder="username"
+                                    >
+                                    <small class="team-create-hint">Введите никнейм пользователя, которого нужно добавить в команду</small>
+                                    @error('username', 'team_edit_'.$team->id)
+                                        <small class="project-create-error">{{ $message }}</small>
+                                    @enderror
+                                </label>
+
+                                <div class="project-create-modal-actions">
+                                    <button
+                                        type="button"
+                                        class="project-create-modal-cancel"
+                                        onclick="document.getElementById('edit-team-{{ $team->id }}').close()"
+                                    >
+                                        Отмена
+                                    </button>
+                                    <button type="submit" class="project-create-modal-submit">Сохранить</button>
+                                </div>
+                            </form>
+
+                            <section class="team-edit-members">
+                                <h3>Участники команды</h3>
+                                <div class="team-edit-members-list">
+                                    @foreach($team->users as $member)
+                                        <div class="team-edit-member">
+                                            <span class="team-edit-member-avatar">{{ mb_substr($member->name, 0, 1) }}</span>
+                                            <span class="team-edit-member-copy">
+                                                <strong>{{ $member->name }}</strong>
+                                                <span>{{ $member->username ? '@'.$member->username : 'username не указан' }}</span>
+                                            </span>
+
+                                            @if($member->id === $team->owner_id)
+                                                <span class="team-owner-label">Владелец</span>
+                                            @else
+                                                <form action="{{ route('teams.members.destroy', [$team, $member], absolute: false) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button
+                                                        type="submit"
+                                                        class="team-member-remove"
+                                                        aria-label="Удалить участника из команды"
+                                                    >
+                                                        <i class="fa-solid fa-trash-can"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </section>
+                        </div>
+                    </dialog>
+
+                    <dialog class="project-delete-modal" id="delete-team-{{ $team->id }}">
+                        <form action="{{ route('teams.destroy', $team, absolute: false) }}" method="POST" class="project-delete-form">
+                            @csrf
+                            @method('DELETE')
+
+                            <button
+                                type="button"
+                                class="project-delete-close"
+                                aria-label="Закрыть"
+                                onclick="document.getElementById('delete-team-{{ $team->id }}').close()"
+                            >
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+
+                            <div class="project-delete-icon">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </div>
+
+                            <h2>Вы хотите удалить эту команду?</h2>
+                            <p>Команда «{{ $team->name }}» и все связанные с ней проекты будут удалены.</p>
+
+                            <div class="project-delete-actions">
+                                <button
+                                    type="button"
+                                    class="project-delete-cancel"
+                                    onclick="document.getElementById('delete-team-{{ $team->id }}').close()"
+                                >
+                                    Отмена
+                                </button>
+                                <button type="submit" class="project-delete-confirm">Удалить</button>
+                            </div>
+                        </form>
+                    </dialog>
+                @else
+                    <form action="{{ route('teams.leave', $team, absolute: false) }}" method="POST" class="tools-bar team-card-tools team-leave-tools">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="tool-leave">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <p>Выйти из команды</p>
+                        </button>
+                    </form>
+                @endif
             @empty
                 <div class="project-block">
                     <h4>Команды не найдены</h4>
@@ -91,7 +216,7 @@
 </div>
 
 <dialog class="project-create-modal" id="create-team-modal">
-    <form class="project-create-modal-form" action="{{ route('teams.store') }}" method="POST">
+    <form class="project-create-modal-form" action="{{ route('teams.store', absolute: false) }}" method="POST">
         @csrf
 
         <div class="project-create-modal-header">
@@ -121,7 +246,7 @@
         </label>
 
         <label>
-            <span>Имя пользователей</span>
+            <span>Имена пользователей</span>
             <input
                 type="text"
                 name="member_usernames"
@@ -154,4 +279,14 @@
         });
     </script>
 @endif
+
+@foreach($teams as $team)
+    @if($errors->getBag('team_edit_'.$team->id)->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                document.getElementById('edit-team-{{ $team->id }}')?.showModal();
+            });
+        </script>
+    @endif
+@endforeach
 @endsection

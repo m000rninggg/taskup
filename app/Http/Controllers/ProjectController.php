@@ -11,7 +11,9 @@ class ProjectController extends Controller
 {
     private function checkAccess(Project $project): void
     {
-        if (! Auth::user()->teams->contains($project->team)) {
+        $user = Auth::user();
+
+        if (! $user instanceof User || ! $user->teams->contains($project->team)) {
             abort(403);
         }
     }
@@ -23,7 +25,13 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $userTeams = Auth::user()->teams;
+        $user = Auth::user();
+
+        if (! $user instanceof User) {
+            abort(403);
+        }
+
+        $userTeams = $user->teams;
         $projects = Project::with(['team', 'tasks'])
             ->whereIn('team_id', $userTeams->pluck('id'))
             ->latest()
@@ -43,7 +51,9 @@ class ProjectController extends Controller
             'description' => 'nullable',
         ]);
 
-        abort_unless(Auth::user()->teams()->whereKey($validated['team_id'])->exists(), 403);
+        $user = Auth::user();
+
+        abort_unless($user instanceof User && $user->teams()->whereKey($validated['team_id'])->exists(), 403);
 
         Project::create([
             'team_id' => $validated['team_id'],

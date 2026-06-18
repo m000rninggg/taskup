@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,10 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $user = $request->user();
+
+        if (! $user instanceof User) {
+            abort(403);
+        }
 
         $projectsCount = Project::whereIn(
             'team_id',

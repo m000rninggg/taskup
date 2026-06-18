@@ -50,6 +50,7 @@ class ProjectSettingsTest extends TestCase
             'team_id' => $project->team_id,
             'user_id' => $member->id,
         ]);
+
     }
 
     public function test_non_owner_cannot_access_project_settings(): void

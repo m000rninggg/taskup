@@ -2,7 +2,8 @@
 @section('title', 'Проекты - TaskUP')
 
 @push('styles')
-    @vite('resources/css/dashboard.css')
+    @vite('resources/css/workspace.css')
+    @vite('resources/css/directory.css')
 @endpush
 
 @section('content')
@@ -55,7 +56,7 @@
 
                 @if($project->team->owner_id === auth()->id())
                     <dialog class="project-delete-modal" id="delete-project-{{ $project->id }}">
-                        <form action="{{ route('projects.destroy', $project) }}" method="POST" class="project-delete-form">
+                        <form action="{{ route('projects.destroy', $project, absolute: false) }}" method="POST" class="project-delete-form">
                             @csrf
                             @method('DELETE')
 
@@ -99,7 +100,7 @@
 </div>
 
 <dialog class="project-create-modal" id="create-project-modal">
-    <form class="project-create-modal-form" action="{{ route('projects.store') }}" method="POST">
+    <form class="project-create-modal-form" action="{{ route('projects.store', absolute: false) }}" method="POST">
         @csrf
 
         <div class="project-create-modal-header">

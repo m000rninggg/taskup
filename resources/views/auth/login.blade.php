@@ -5,7 +5,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('login') }}" class="auth-form">
+    <form method="POST" action="{{ route('login', absolute: false) }}" class="auth-form">
         @csrf
 
         <div class="form-group">

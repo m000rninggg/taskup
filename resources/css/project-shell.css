@@ -40,8 +40,7 @@ footer {
 }
 
 .sidebar-menu-btn,
-.workspace-select,
-.share-btn {
+.workspace-select {
     border: 0;
     cursor: pointer;
     box-shadow: none;
@@ -283,7 +282,7 @@ footer {
 .team-avatars {
     display: flex;
     align-items: center;
-    min-width: 24px;
+    min-width: 28px;
 }
 
 .team-avatars span,
@@ -299,35 +298,23 @@ footer {
 }
 
 .team-avatars span {
-    width: 24px;
-    height: 24px;
-    margin-left: -7px;
+    width: 28px;
+    height: 28px;
+    margin-left: -8px;
     border: 2px solid var(--color-bg-end);
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .team-avatars span:first-child {
     margin-left: 0;
 }
 
-.share-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
+.user-panel-divider {
+    display: block;
+    flex: 0 0 1px;
+    width: 1px;
     height: 28px;
-    padding: 0;
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    background: transparent;
-    color: var(--color-tertiary);
-    font-size: 12px;
-    transition: color .2s, border-color .2s;
-}
-
-.share-btn:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    background: var(--color-divider);
 }
 
 .user-name {

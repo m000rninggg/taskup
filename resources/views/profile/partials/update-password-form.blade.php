@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="breeze-form">
+    <form method="post" action="{{ route('password.update', absolute: false) }}" class="breeze-form">
         @csrf
         @method('put')
 

@@ -32,7 +32,7 @@
                 <span>Редактировать</span>
             </button>
 
-            <form action="{{ route('documents.destroy', $document) }}" method="POST" onclick="event.stopPropagation()">
+            <form action="{{ route('documents.destroy', $document, absolute: false) }}" method="POST" onclick="event.stopPropagation()">
                 @csrf
                 @method('DELETE')
                 <button

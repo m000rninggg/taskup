@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,9 @@ class CommentController extends Controller
     {
         $task->load('project.team');
 
-        if (! Auth::user()->teams->contains($task->project->team)) {
+        $user = Auth::user();
+
+        if (! $user instanceof User || ! $user->teams->contains($task->project->team)) {
             abort(403);
         }
 

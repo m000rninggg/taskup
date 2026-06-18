@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" class="auth-form">
+    <form method="POST" action="{{ route('register', absolute: false) }}" class="auth-form">
         @csrf
 
         <div class="form-group">

@@ -9,11 +9,11 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form id="send-verification" method="post" action="{{ route('verification.send', absolute: false) }}">
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="breeze-form">
+    <form method="post" action="{{ route('profile.update', absolute: false) }}" class="breeze-form">
         @csrf
         @method('patch')
 

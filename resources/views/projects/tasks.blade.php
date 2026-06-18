@@ -3,6 +3,8 @@
 
 @push('styles')
     @vite('resources/css/tasks.css')
+    @vite('resources/css/task-comments.css')
+    @vite('resources/css/task-modals.css')
     @vite('resources/css/project-shell.css')
 @endpush
 

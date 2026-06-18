@@ -43,6 +43,26 @@ class TaskManagementTest extends TestCase
         $this->assertDatabaseMissing('tasks', ['id' => $task->id]);
     }
 
+    public function test_team_member_can_update_task_status_with_json_response(): void
+    {
+        [$user, $task] = $this->createTaskForTeamMember();
+
+        $response = $this->actingAs($user)->patchJson(route('tasks.status.update', $task), [
+            'status' => 'in_progress',
+        ]);
+
+        $response
+            ->assertOk()
+            ->assertJson([
+                'status' => 'in_progress',
+            ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $task->id,
+            'status' => 'in_progress',
+        ]);
+    }
+
     public function test_user_outside_team_cannot_update_or_delete_a_task(): void
     {
         [, $task] = $this->createTaskForTeamMember();

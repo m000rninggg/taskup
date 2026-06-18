@@ -9,7 +9,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('password.email') }}" class="auth-form">
+    <form method="POST" action="{{ route('password.email', absolute: false) }}" class="auth-form">
         @csrf
 
         <div class="form-group">

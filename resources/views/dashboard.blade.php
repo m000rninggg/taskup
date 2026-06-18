@@ -2,6 +2,7 @@
 @section('title', 'Кабинет - TaskUP')
 
 @push('styles')
+    @vite('resources/css/workspace.css')
     @vite('resources/css/dashboard.css')
 @endpush
 

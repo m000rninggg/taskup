@@ -3,7 +3,7 @@
 @endphp
 
 <dialog class="document-modal" id="{{ $editModalId }}">
-    <form class="document-modal-form" action="{{ route('documents.update', $document) }}" method="POST">
+    <form class="document-modal-form" action="{{ route('documents.update', $document, absolute: false) }}" method="POST">
         @csrf
         @method('PATCH')
 

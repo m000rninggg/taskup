@@ -15,7 +15,7 @@
     >{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="breeze-modal-form">
+        <form method="post" action="{{ route('profile.destroy', absolute: false) }}" class="breeze-modal-form">
             @csrf
             @method('delete')
 
