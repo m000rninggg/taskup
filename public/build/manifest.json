@@ -1,0 +1,134 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-CLWxiMRo.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/dashboard.css": {
+    "file": "assets/dashboard-CQZQRRmu.css",
+    "src": "resources/css/dashboard.css",
+    "isEntry": true,
+    "name": "dashboard",
+    "names": [
+      "dashboard.css"
+    ]
+  },
+  "resources/css/directory.css": {
+    "file": "assets/directory-DxrwOT9x.css",
+    "src": "resources/css/directory.css",
+    "isEntry": true,
+    "name": "directory",
+    "names": [
+      "directory.css"
+    ]
+  },
+  "resources/css/documentation.css": {
+    "file": "assets/documentation-Ci_zm5o1.css",
+    "src": "resources/css/documentation.css",
+    "isEntry": true,
+    "name": "documentation",
+    "names": [
+      "documentation.css"
+    ]
+  },
+  "resources/css/home.css": {
+    "file": "assets/home-BxiXBqmu.css",
+    "src": "resources/css/home.css",
+    "isEntry": true,
+    "name": "home",
+    "names": [
+      "home.css"
+    ]
+  },
+  "resources/css/login.css": {
+    "file": "assets/login-RgiXMPYh.css",
+    "src": "resources/css/login.css",
+    "isEntry": true,
+    "name": "login",
+    "names": [
+      "login.css"
+    ]
+  },
+  "resources/css/profile.css": {
+    "file": "assets/profile-D7Zv4rFk.css",
+    "src": "resources/css/profile.css",
+    "isEntry": true,
+    "name": "profile",
+    "names": [
+      "profile.css"
+    ]
+  },
+  "resources/css/project-settings.css": {
+    "file": "assets/project-settings-lwhrxJyr.css",
+    "src": "resources/css/project-settings.css",
+    "isEntry": true,
+    "name": "project-settings",
+    "names": [
+      "project-settings.css"
+    ]
+  },
+  "resources/css/project-shell.css": {
+    "file": "assets/project-shell-jWANLTkQ.css",
+    "src": "resources/css/project-shell.css",
+    "isEntry": true,
+    "name": "project-shell",
+    "names": [
+      "project-shell.css"
+    ]
+  },
+  "resources/css/project.css": {
+    "file": "assets/project-CgBipyq_.css",
+    "src": "resources/css/project.css",
+    "isEntry": true,
+    "name": "project",
+    "names": [
+      "project.css"
+    ]
+  },
+  "resources/css/task-comments.css": {
+    "file": "assets/task-comments-tt8c26tT.css",
+    "src": "resources/css/task-comments.css",
+    "isEntry": true,
+    "name": "task-comments",
+    "names": [
+      "task-comments.css"
+    ]
+  },
+  "resources/css/task-modals.css": {
+    "file": "assets/task-modals-BsG0mA4c.css",
+    "src": "resources/css/task-modals.css",
+    "isEntry": true,
+    "name": "task-modals",
+    "names": [
+      "task-modals.css"
+    ]
+  },
+  "resources/css/tasks.css": {
+    "file": "assets/tasks-BiIFwQNO.css",
+    "src": "resources/css/tasks.css",
+    "isEntry": true,
+    "name": "tasks",
+    "names": [
+      "tasks.css"
+    ]
+  },
+  "resources/css/workspace.css": {
+    "file": "assets/workspace-BV11GOH8.css",
+    "src": "resources/css/workspace.css",
+    "isEntry": true,
+    "name": "workspace",
+    "names": [
+      "workspace.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CDRr5IUO.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  }
+}
